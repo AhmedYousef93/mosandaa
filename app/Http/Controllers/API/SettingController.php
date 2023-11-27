@@ -19,18 +19,18 @@ class SettingController extends Controller
    
     public function cities(): \Illuminate\Http\JsonResponse
     {
-        $cities = City::get();
+        $cities = City::paginate();
         return self::successResponse(data:CityResource::collection($cities)->response()->getData(true));
     }
     public function states($id): \Illuminate\Http\JsonResponse
     {
-        $states = State::where('area_id',$id)->get();
+        $states = State::where('area_id',$id)->paginate();
         return self::successResponse(data:StateResource::collection($states)->response()->getData(true));
     }
 
     public function areas($id): \Illuminate\Http\JsonResponse
     {
-        $states = Area::where('city_id',$id)->get();
+        $states = Area::where('city_id',$id)->paginate();
         return self::successResponse(data:AreaResource::collection($states)->response()->getData(true));
     }
 }

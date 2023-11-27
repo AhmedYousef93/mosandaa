@@ -16,6 +16,9 @@ Route::get('settings',         [\App\Http\Controllers\API\SettingController::cla
 Route::get('cities', [\App\Http\Controllers\API\SettingController::class, 'cities']); //cities
 Route::get('areas/{id}', [\App\Http\Controllers\API\SettingController::class, 'areas']); //states
 Route::get('states/{id}', [\App\Http\Controllers\API\SettingController::class, 'states']); //states
+Route::get('services', [\App\Http\Controllers\API\ServiceController::class, 'index']); //services
+Route::get('all-services-with-subservices', [\App\Http\Controllers\API\ServiceController::class, 'allServiceWithSubServices']); //all-services-with-subservices
+Route::get('subservices/{service}', [\App\Http\Controllers\API\ServiceController::class, 'getSubService']); //subservices
 
 
 Route::middleware(['auth:sanctum' , 'bindings'])->group( function () {

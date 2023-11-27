@@ -30,7 +30,8 @@
                             <div class="col-md-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{$subservice->title}}</h5>
+                                    <h5 class="card-title">{{$subservice->title}}</h5>
+                                    <p class="card-title">{{$subservice->description}}</p>
                                         <!-- Add button with icon to trigger common modal -->
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal" data-subservice-id="{{$subservice->id}}" onclick="clearModalFields()">
                                         <i data-feather="edit"></i>
