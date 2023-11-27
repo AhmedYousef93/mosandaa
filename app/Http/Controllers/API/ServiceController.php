@@ -26,10 +26,9 @@ class ServiceController extends Controller
         return self::successResponse(data: ServiceResource::collection($services));
     }
 
-    public function getSubService($service)
+    public function getSubService(Service $service)
     {
-        $subService = Subservice::where('service_id', $service)->get();
+        $subService = $service->subservices;
         return self::successResponse(data: SubServiceResource::collection($subService));
-
     }
 }

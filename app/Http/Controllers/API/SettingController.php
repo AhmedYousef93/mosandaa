@@ -14,23 +14,25 @@ use App\Traits\ResponseTrait;
 
 class SettingController extends Controller
 {
-    use ResponseTrait,HasAttachment;
+    use ResponseTrait, HasAttachment;
 
-   
+
     public function cities(): \Illuminate\Http\JsonResponse
     {
         $cities = City::paginate();
-        return self::successResponse(data:CityResource::collection($cities)->response()->getData(true));
-    }
-    public function states($id): \Illuminate\Http\JsonResponse
-    {
-        $states = State::where('area_id',$id)->paginate();
-        return self::successResponse(data:StateResource::collection($states)->response()->getData(true));
+        return self::successResponse(data: CityResource::collection($cities)->response()->getData(true));
     }
 
-    public function areas($id): \Illuminate\Http\JsonResponse
+    public function states(Area $area): \Illuminate\Http\JsonResponse
     {
-        $states = Area::where('city_id',$id)->paginate();
-        return self::successResponse(data:AreaResource::collection($states)->response()->getData(true));
+        $states = $area->states()->paginate();
+
+        return self::successResponse(data: StateResource::collection($states)->response()->getData(true));
+    }
+
+    public function areas(City $city): \Illuminate\Http\JsonResponse
+    {
+        $areas = $city->areas()->paginate();
+        return self::successResponse(data: AreaResource::collection($areas)->response()->getData(true));
     }
 }
