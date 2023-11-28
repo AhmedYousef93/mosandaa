@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LaratrustSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(ServiceSeeder::class);
+        $this->call(CitySeeder::class);
         \App\Models\AboutUs::factory(1)->create();
         \App\Models\Privecy::factory(1)->create();
         \App\Models\Term::factory(1)->create();

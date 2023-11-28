@@ -26,7 +26,6 @@ class SettingController extends Controller
     public function states(Area $area): \Illuminate\Http\JsonResponse
     {
         $states = $area->states()->paginate();
-
         return self::successResponse(data: StateResource::collection($states)->response()->getData(true));
     }
 
