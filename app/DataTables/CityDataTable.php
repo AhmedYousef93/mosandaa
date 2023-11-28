@@ -22,6 +22,9 @@ class CityDataTable extends DataTable
     {
         return datatables()
         ->eloquent($query)
+        ->addColumn('title', function ($query) {
+            return $query->title;
+        })
         ->addColumn('action', function ($row) {
 
             if (Auth::guard('admin')->user()->hasPermission('cities-update')){
@@ -67,7 +70,7 @@ class CityDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-        ->setTableId('faq-table')
+        ->setTableId('city-table')
         ->columns($this->getColumns())
         ->minifiedAjax()
         //->dom('Bfrtip')
@@ -92,9 +95,9 @@ class CityDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => ['title' => 'ID', 'data' => 'id'],
-            'title' => ['title' => __('admin.title'), 'data' => 'title'],
-            'action' => ['title' =>  __('admin.action'), 'data' => 'action', 'orderable' => false, 'searchable' => false],
+            Column::make('id')->title("#")->addClass('text-center')->orderable(false)->searchable(false),
+            Column::computed('title')->title(__('admin.title'))->searchable(true)->addClass('text-center'),
+            Column::computed('action')->title(__('admin.action'))->exportable(false)->printable(false)->addClass('text-center'),
         ];
     }
 
