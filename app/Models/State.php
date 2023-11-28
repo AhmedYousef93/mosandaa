@@ -10,6 +10,7 @@ class State extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     
     public function title(): Attribute

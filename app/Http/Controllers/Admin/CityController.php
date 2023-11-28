@@ -13,7 +13,7 @@ class CityController extends BaseAdminController
 {
     public function __construct()
     {
-      $this->permissionsAdmin('cities',$read = true, $create = true, $update = true, $delete = true);
+        $this->permissionsAdmin('cities', $read = true, $create = true, $update = true, $delete = true);
     }
 
     public function index(CityDataTable $cities)
@@ -24,7 +24,7 @@ class CityController extends BaseAdminController
     public function store(StoreCity $request)
     {
         $city = City::create($request->validated());
-        return response()->json(['status'=>'success','data'=>$city]);
+        return response()->json(['status' => 'success', 'data' => $city]);
     }
 
     public function CityStatus(Request $request)
@@ -35,17 +35,15 @@ class CityController extends BaseAdminController
         return response()->json(['status' => 'success', 'data' => $city]);
     }
 
-    public function update(UpdateCity $request, $id)
+    public function update(UpdateCity $request, City $city)
     {
-        $city = City::findOrFail($id);
         $city->update($request->validated());
-
-        return response()->json(['status'=>'success','data'=>$city]);
+        return response()->json(['status' => 'success', 'data' => $city]);
     }
 
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        $city = City::whereId($id)->delete();
+        $city->delete();
         return response()->json(['status' => 'success']);
     }
 }

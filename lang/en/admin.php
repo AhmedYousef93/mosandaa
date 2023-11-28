@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'wnesday' => 'Wnes - Daycare Dashboard',
-    'Wnes' => 'Wnes App',
-    'titlew' => "Wnes Message",
+    'Mosandaday' => 'Mosanda - Daycare Dashboard',
+    'Mosanda' => 'Mosanda App',
+    'titlew' => "Mosanda Message",
     'icon' => "Icon",
-    'adminwebsiteTitle' => "Wanes Admin Dashboard",
-    'daycareTitle' => "Wanes Sub-Admin Dashboard",
-    'welcome' => "Welcome to Wanes Dashboard !",
+    'adminwebsiteTitle' => "Mosanda Admin Dashboard",
+    'daycareTitle' => "Mosanda Sub-Admin Dashboard",
+    'welcome' => "Welcome to Mosanda Dashboard !",
     'congratulation' => 'Congratulations',
     'welcomeday' => "Welcome to Daycare-Dashboard !",
     'pleasesign' => 'Please sign-in to your account and start',
@@ -495,6 +495,8 @@ return [
     "chapter"=>"chapter",
     'cost_after_tax' => ' Cost After Tax',
     'Please fill in all required fields' => 'Please fill in all required fields',
+    'areas' => 'areas',
+    'addareas'=>'add area',
 
 
 ];

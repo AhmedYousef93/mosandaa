@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         if ($e instanceof ValidationException) {
-            return self::faildResponse(422 , $e->getMessage());
+            return self::failResponse(422 , $e->getMessage());
         }
         return parent::render($request, $e);
     }

@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'wnesday' => 'ونيس - اللوحه الخاصه بالمركز',
-    'Wnes' => 'ونيس',
-    'titlew' => "اشعار من ونيس",
-    'adminwebsiteTitle' => 'لوحة التحكم الرئيسية - ونيس',
-    'daycareTitle' => 'لوحة التحكم الفرعية - ونيس',
+    'wnesday' => 'مسانده - اللوحه الخاصه بالمركز',
+    'Wnes' => 'مسانده',
+    'titlew' => "اشعار من مسانده",
+    'adminwebsiteTitle' => 'لوحة التحكم الرئيسية - مسانده',
+    'daycareTitle' => 'لوحة التحكم الفرعية - مسانده',
     'congratulation' => 'مرحبا ',
     'welcome' => 'مرحبا بك فى لوحه التحكم !',
     'pleasesign' => 'رجاء الدخول الى حسابك وابداء معنا',
@@ -263,10 +263,10 @@ return [
     'roles create' => 'انشاء صلاحية',
     'actions' => "الأجراءات",
     "role name" => "الصلاحية",
-    "states" => "المناطق",
-    "state" => "المنطقة",
-    "addstates" => "أضافة منطقه",
-    "editstates" => "تعديل منطقه",
+    "states" => "الحي",
+    "state" => "الحي",
+    "addstates" => "أضافة حي",
+    "editstates" => "تعديل حي",
     "select city" => "اختر مدينة",
     "city" => " مدينة",
     'forgetpass' => 'نسيت كلمه المرور ؟',
@@ -491,4 +491,7 @@ return [
     'cost_after_discount' => 'التكلفه بعد الخصم',
     'numbTickets' => 'عدد التزاكر',
     'Please fill in all required fields' => 'يرجى ملء جميع الحقول المطلوبة',
+    'areas' => 'المناطق',
+    'addareas'=>'اضافة المنطقة',
+
 ];

@@ -19,6 +19,8 @@ return [
             'users'        => 'c,r,u,d',
             'faqs'         => 'c,r,u,d',
             'cities'       => 'c,r,u,d',
+            'areas'       => 'c,r,u,d',
+            'states'       => 'c,r,u,d',
             'services'     => 'c,r,u,d',
             'orders'       => 'c,r,u,d',
             'aboutus'      => 'r,u',

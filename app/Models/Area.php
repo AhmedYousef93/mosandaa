@@ -10,7 +10,8 @@ class Area extends Model
 {
     use HasFactory;
 
-    
+        protected $guarded = [];
+
     public function title(): Attribute
     {
         return Attribute::make(

@@ -9,6 +9,7 @@ class City extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function title(): Attribute
     {

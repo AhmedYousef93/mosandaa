@@ -82,6 +82,22 @@
                 </a>
             </li>
             @endif
+            @if(Auth::guard('admin')->user()->hasPermission('areas-read'))
+            <li class="nav-item {{ URL::route('areas.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('areas.index')}}"><i data-feather='truck'></i><span
+                        style="font-family: cairo;" class="menu-title text-truncate"
+                        data-i18n="about">@lang('admin.areas')</span>
+                </a>
+            </li>
+            @endif
+            @if(Auth::guard('admin')->user()->hasPermission('states-read'))
+            <li class="nav-item {{ URL::route('states.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('states.index')}}"><i data-feather='truck'></i><span
+                        style="font-family: cairo;" class="menu-title text-truncate"
+                        data-i18n="about">@lang('admin.states')</span>
+                </a>
+            </li>
+            @endif
 
             @if(Auth::guard('admin')->user()->hasPermission('aboutus-read'))
             <li class="nav-item {{ URL::route('aboutus.index') === URL::current() ? 'active' : '' }}">
