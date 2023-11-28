@@ -27,14 +27,6 @@ class CityController extends BaseAdminController
         return response()->json(['status' => 'success', 'data' => $city]);
     }
 
-    public function CityStatus(Request $request)
-    {
-        $city = City::find($request->city_id);
-        $city->active = $request->active;
-        $city->save();
-        return response()->json(['status' => 'success', 'data' => $city]);
-    }
-
     public function update(UpdateCity $request, City $city)
     {
         $city->update($request->validated());
