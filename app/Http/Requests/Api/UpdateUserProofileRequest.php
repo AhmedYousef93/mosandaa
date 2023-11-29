@@ -5,7 +5,7 @@ namespace App\Http\Requests\Api;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends ApiFormRequest
+class UpdateUserProofileRequest extends ApiFormRequest
 {
     public function rules(): array
     {
