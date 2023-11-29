@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class UserShowResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -31,7 +31,6 @@ class UserResource extends JsonResource
             'labor_city' => $this->userDetails->labor_city == null ? null : $this->userDetails->labor_city,
             'id_number' => $this->userDetails->id_number == null ? null : $this->userDetails->id_number,
             'date_of_birth' => $this->userDetails->date_of_birth == null ? null : $this->userDetails->date_of_birth,
-            'access_token' => $this->createToken('PersonalAccessToken')->plainTextToken,
         ];
     }
 }

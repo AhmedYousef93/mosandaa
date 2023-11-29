@@ -13,6 +13,7 @@ use App\Http\Requests\Api\UserLoginRequest;
 use App\Http\Requests\Api\UserRegisterRequest;
 use App\Http\Requests\Api\UserResetPasswordRequest;
 use App\Http\Requests\API\VerifyRequest;
+use App\Http\Resources\UserShowResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserMail;
@@ -136,6 +137,11 @@ class AuthController extends Controller
         }
         return self::successResponse(__('application.updated'), UserResource::make($user));
 
+    }
+
+    public function show()
+    {
+        return self::successResponse(__('application.user'), UserShowResource::make(auth('api')->user()));
     }
 
 }
