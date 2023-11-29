@@ -31,8 +31,12 @@ Route::middleware(['bindings'])->group(function () {
         Route::post('update', [\App\Http\Controllers\API\AuthController::class, 'update']); //update user
         Route::get('user-profile', [\App\Http\Controllers\API\AuthController::class, 'profile']); // user
         Route::get('user-delete', [\App\Http\Controllers\API\AuthController::class, 'delete']); //delete user
-
-
+        //addresses
+        Route::post('/addresses', [\App\Http\Controllers\API\AddressController::class, 'store']);
+        Route::get('/addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'show']);
+        Route::get('/update-addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
+        Route::get('/user-addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
+        Route::get('addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
 
         Route::get('notifications', [\App\Http\Controllers\API\NotificationController::class, 'userNotifications']);
         Route::post('delete-notification', [\App\Http\Controllers\API\NotificationController::class, 'DeleteNotification']);
