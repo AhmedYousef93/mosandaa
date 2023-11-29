@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\LoginUserResquest;
-use App\Http\Requests\API\RegisterRequest;
 use App\Http\Requests\API\ResetCodeResquest;
-use App\Http\Requests\API\UpdatePasswordRequest;
 use App\Http\Requests\Api\UpdateUserProofileRequest;
 use App\Http\Requests\Api\UpdateUserRequest;
 use App\Http\Requests\Api\UserLoginRequest;
 use App\Http\Requests\Api\UserRegisterRequest;
 use App\Http\Requests\Api\UserResetPasswordRequest;
 use App\Http\Requests\API\VerifyRequest;
-use App\Http\Resources\UserShowResource;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\UserMail;
 use App\Traits\ResponseTrait;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
@@ -135,13 +129,15 @@ class AuthController extends Controller
         if ($request->attachments) {
             $user->assignAttachment($request->attachments);
         }
+        $user->token = $user->createToken('PersonalAccessToken')->plainTextToken;
+
         return self::successResponse(__('application.updated'), UserResource::make($user));
 
     }
 
     public function show()
     {
-        return self::successResponse(__('application.user'), UserShowResource::make(auth('api')->user()));
+        return self::successResponse(__('application.user'), UserResource::make(auth('api')->user()));
     }
 
 }
