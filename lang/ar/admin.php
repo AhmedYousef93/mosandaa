@@ -493,5 +493,18 @@ return [
     'Please fill in all required fields' => 'يرجى ملء جميع الحقول المطلوبة',
     'areas' => 'المناطق',
     'addareas'=>'اضافة المنطقة',
+    'Accommodation_Information'=> 'معلومات الاقامة',
+    'Residence_of_the_sponsor'=> 'مقر اقامة الكفيل',
+    'Labor_City'=> 'مدينه العمل',
+    'salary'=> 'الراتب',
+    'date_of_birth'=> 'تاريخ الميلاد',
+    'sponsor_name'=> 'اسم الكفيل',
+    'passport_number'=> 'رقم جواز السفر',
+    'area'=> 'المنطقة',
+    'building_number'=> 'رقم المبني ',
+    'street'=> 'الشارع',
+    'Employment_contract_offer'=> 'عرض عقد العمل',
+    'Identity_Show'=> ' عرض الهوية'
+
 
 ];

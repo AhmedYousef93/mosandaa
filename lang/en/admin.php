@@ -497,6 +497,19 @@ return [
     'Please fill in all required fields' => 'Please fill in all required fields',
     'areas' => 'areas',
     'addareas'=>'add area',
+    'Accommodation_Information'=> 'Accommodation Information',
+    'Residence_of_the_sponsor'=> 'Residence of the sponsor',
+    'Labor_City'=> 'Labor City',
+    'salary'=> 'Dalary',
+    'date_of_birth'=> 'Date of birth',
+    'sponsor_name'=> 'Sponsor name',
+    'passport_number'=> 'passport number',
+    'area'=> 'Area',
+    'building_number'=> 'Building Number',
+    'street'=> 'Street',
+    'Employment_contract_offer'=> 'Employment contract offer',
+    'Identity_Show'=> 'Identity Show'
+
 
 
 ];

@@ -29,7 +29,7 @@ Route::middleware(['bindings'])->group(function () {
         Route::get('logout', [\App\Http\Controllers\API\AuthController::class, 'logout']); // logout
         Route::post('update-profile', [\App\Http\Controllers\API\AuthController::class, 'updateProfile']); //update user
         Route::post('update', [\App\Http\Controllers\API\AuthController::class, 'update']); //update user
-        Route::get('user-profile', [\App\Http\Controllers\API\AuthController::class, 'profile']); // user
+        Route::get('user-profile', [\App\Http\Controllers\API\AuthController::class, 'show']); // user
         Route::get('user-delete', [\App\Http\Controllers\API\AuthController::class, 'delete']); //delete user
         //addresses
         Route::post('/addresses', [\App\Http\Controllers\API\AddressController::class, 'store']);

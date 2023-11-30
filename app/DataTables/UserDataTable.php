@@ -23,40 +23,10 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            
-            ->editColumn('active', function ($query) {
-                if ($query->active) {
-                    $btn = '
-                    <div align="center">
-                        <label class="switch">
-                        <input data-id="' . $query->id . '" type="checkbox" id="check" checked>
-                            <div class="slider round">
-                                <span class="on">ON</span>
-                                <span class="off">OFF</span>
-                            </div>
-                        </label>
-                    </div>';
-                } else {
-                    $btn = '
-                    <div align="center">
-                        <label class="switch">
-                        <input data-id="' . $query->id . '" type="checkbox" id="check">
-                            <div class="slider round">
-                                <span class="on">ON</span>
-                                <span class="off">OFF</span>
-                            </div>
-                        </label>
-                    </div>';
-                }
-
-                return $btn;
-            })
             ->addColumn('action', function ($query) {
-
-                    $btn ='<button type="button" class="btn btn-icon btn-icon rounded-circle btn-dark kids" data-id="' . $query->id . '" data-toggle="modal" data-target="#typesList">
-                    <i data-feather="user"></i>
-                </button> &nbsp;';
-
+                $btn = '<a href="' . route('users.show', $query->id) . '" class="btn btn-icon btn-icon rounded-circle btn-info show">
+                <i data-feather="eye"></i>
+                        </a>';
                 return $btn;
             })
             ->rawColumns(['action', 'active']);
@@ -70,7 +40,7 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->query()->where('verified',1)->orderByDesc('id');
+        return $model->query()->where('verified', 1)->orderByDesc('id');
     }
 
     /**
@@ -81,20 +51,20 @@ class UserDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('user-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->parameters([
-                        "processing" => true,
-                        "serverSide" => true,
-                        "responsive" => true,
-                        "searching"=> true,
-                        "drawCallback" => "function( settings ) {
+            ->setTableId('user-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->parameters([
+                "processing" => true,
+                "serverSide" => true,
+                "responsive" => true,
+                "searching" => true,
+                "drawCallback" => "function( settings ) {
                             feather.replace();
                          }",
-                    ])
-                    ->orderBy(0);
+            ])
+            ->orderBy(0);
     }
 
     /**
@@ -105,13 +75,12 @@ class UserDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => ['title' => 'ID', 'data' => 'id'],
-            'name' => ['title' =>  __('admin.name'), 'data' => 'name'],
-            'email' => ['title' =>  __('admin.email'), 'data' => 'email'],
-            'phone' => ['title' =>  __('admin.phone'), 'data' => 'phone'],
-            'code' => ['title' =>  __('admin.code'), 'data' => 'code'],
-            // 'active' => ['title' =>  __('admin.active'), 'data' => 'active'],
-            'action' => ['title' =>  __('admin.details'), 'data' => 'action'],
+            Column::make('id')->title("#")->addClass('text-center')->orderable(false)->searchable(false),
+            Column::computed('name')->title(__('admin.name'))->searchable(true)->addClass('text-center'),
+            Column::computed('email')->title(__('admin.email'))->searchable(true)->addClass('text-center'),
+            Column::computed('phone')->title(__('admin.phone'))->searchable(true)->addClass('text-center'),
+            Column::computed('code')->title(__('admin.code'))->searchable(true)->addClass('text-center'),
+            Column::computed('action')->title(__('admin.action'))->exportable(false)->printable(false)->addClass('text-center'),
         ];
     }
 

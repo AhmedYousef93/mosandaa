@@ -229,26 +229,7 @@
 
 <script>
 
-    $('body').on('click','.kids',function () {
-        var user_id = $(this).data('id');
-        $.ajax({
-            url:'{{ route('getkids') }}',
-            type:'GET',
-            data:{
-                'user_id': user_id
-            },
-            success: function (response) {
-                    var docRow = '';
-                    $('#ShowKids').html('');
-                    $.each(response, function(index, value){
-                      docRow = '<span style="font-size: x-large;">'+value.name+'</span><span style="float: right;font-size: x-large;">'+value.id_number+'</span><br>';
-
-                    $('#ShowKids').append(docRow);
-
-                });
-            }
-        });
-    });
+   
 
       $('body').on('click','#check',function () {
             //e.preventDefault();
