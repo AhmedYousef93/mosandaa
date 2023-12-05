@@ -2,45 +2,50 @@
 
 namespace App\DataTables;
 
-use App\Models\Day;
+use App\Models\Time;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Yajra\DataTables\EloquentDataTable;
 
-class DaysDataTable extends DataTable
+class TimeTable extends DataTable
 {
+
+    protected $dayId;
+
+    public function setDayId($dayId)
+    {
+        $this->dayId = $dayId;
+        return $this;
+    }
+
     /**
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
      * @return \Yajra\DataTables\DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return datatables()
-            ->eloquent($query)
-            ->addIndexColumn()
-            ->addColumn('action', function ($query) {
-                $btn = '<a href="' . route('days.time', $query->id) . '" class="btn btn-icon btn-icon rounded-circle btn-info show">
-                <i data-feather="eye"></i>
-                        </a>';
-                $btn = $btn . '<button type="button" class="btn btn-icon btn-icon rounded-circle btn-gradient-success edit" data-toggle="modal"
-                    data-target="#modal-edit-time" data-dayId="' . $query->id . '"><i data-feather="edit"></i></button> &nbsp;';
-                return $btn;
-            })
-            ->rawColumns(['action']);
+        return (new EloquentDataTable($query))
+            ->addIndexColumn();
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Day $model
+     * @param \App\Models\Time $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Day $model)
+    public function query(Time $model)
     {
-        return $model->query();
+        $query = $model->newQuery();
+        if ($this->dayId) {
+            $query->where('day_id', $this->dayId);
+        }
+        return $query;
     }
 
     /**
@@ -68,8 +73,7 @@ class DaysDataTable extends DataTable
     {
         return [
             Column::make('id')->title("#")->addClass('text-center')->orderable(false)->searchable(false),
-            Column::computed('name')->title(__('admin.name'))->searchable(true)->addClass('text-center'),
-            Column::computed('action')->title(__('admin.action'))->exportable(false)->printable(false)->addClass('text-center'),
+            Column::computed('time')->title(__('admin.time'))->searchable(true)->addClass('text-center'),
         ];
     }
 

@@ -54,41 +54,46 @@
             </div>
         </div>
     </div>
-
     @if(Auth::guard('admin')->user()->hasPermission('days-read'))
     <!-- Modal -->
-<div class="modal fade" id="modal-edit-days" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<form id="editcity" method="post" class="add-new-record modal-content pt-0" enctype="multipart/form-data" data-parsley-validate>
+    <div class="modal fade" id="modal-edit-time" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <form id="editcity" method="post" action="{{route('times.store')}}" class="add-new-record " enctype="multipart/form-data"
+            data-parsley-validate>
+            @csrf
+            <input type="hidden" name="dayId" id="day_id" class="form-control">
 
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <!-- Input Fields -->
-                <div class="input-group mb-3">
-                <input type="text" name="time" id="time" parsley-trigger="change" 
-                        placeholder="@lang('admin.ar.title')" class="form-control" required/>                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary duplicateBtn" type="button">Duplicate</button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary deleteBtn" type="button">Delete</button>
+                    <div class="modal-body">
+
+                        <!-- Input Fields -->
+                        <div class="input-group mb-3">
+                            <input type="time" name="time[]" id="time" parsley-trigger="change"
+                                placeholder="@lang('admin.ar.title')" class="form-control" required />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary duplicateBtn" type="button">Duplicate</button>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary deleteBtn" type="button">Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">save</button>
                     </div>
                 </div>
-
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
     </div>
-</div>
-                </form>
+    </form>
     @endif
 
 
@@ -105,48 +110,18 @@
     });
 </script>
 {{ $dataTable->scripts() }}
-
 <script>
+    $('body').on('click','.edit',function (e) {
+            e.preventDefault();
+            var id = $(this).data('dayid');
+            var title_ar = $(this).data('title_ar');
+            var title_en = $(this).data('title_en');
 
-    $('body').on('click', '.day', function () {
-        var contact_id = $(this).data('id');
-        $.ajax({
-            url: '{{ route('contactusdetails') }}',
-            type: 'GET',
-            data: {
-                'contact_id': contact_id
-            },
-            success: function (response) {
-                var docRow = '';
-                $('#subject').html('');
-                $.each(response, function (index, value) {
-                    docRow = '<div class="modal-header">' + value.phone + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body">' + value.description + '</div>';
-
-                    $('#subject').append(docRow);
-
-                });
-            }
-        });
-    });
-
-
-    $('body').on('submit', '#delform', function (e) {
-        e.preventDefault();
-        var url = $(this).attr('action');
-        $.ajax({
-            url: url,
-            method: "delete",
-            data: {
-                _token: '{{ csrf_token() }}',
-            },
-            success: function (response) {
-                $('.days-table').DataTable().ajax.reload();
-            }
-        });
-    })
-
+            $('#day_id').val(id);
+            $('#title_ar').val(title_ar);
+            $('#title_en').val(title_en);
+        })
 </script>
-
 
 <script>
     $(document).ready(function() {
