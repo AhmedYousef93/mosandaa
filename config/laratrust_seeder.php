@@ -23,6 +23,7 @@ return [
             'states'       => 'c,r,u,d',
             'services'     => 'c,r,u,d',
             'orders'       => 'c,r,u,d',
+            'days'         => 'c,r,u,d',
             'aboutus'      => 'r,u',
             'terms'        => 'r,u',
             'usages'       => 'r,u',

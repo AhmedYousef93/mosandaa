@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(ServiceSeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(DaysTableSeeder::class);
         \App\Models\AboutUs::factory(1)->create();
         \App\Models\Privecy::factory(1)->create();
         \App\Models\Term::factory(1)->create();

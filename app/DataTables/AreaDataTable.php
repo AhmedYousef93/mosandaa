@@ -9,6 +9,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
 
 class AreaDataTable extends DataTable
 {
@@ -67,24 +68,15 @@ class AreaDataTable extends DataTable
      *
      * @return \Yajra\DataTables\Html\Builder
      */
-    public function html()
+    public function html(): HtmlBuilder
     {
         return $this->builder()
-        ->setTableId('area-table')
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        //->dom('Bfrtip')
-        ->parameters([
-            "processing" => true,
-            "serverSide" => true,
-            "responsive" => true,
-            "searching"=> true,
-            "drawCallback" => "function( settings ) {
-                feather.replace();
-             }",
-           "language" => '{"url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Arabic.json"}',
-        ])
-        ->orderBy(0);
+            ->setTableId('city-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle();
     }
 
     /**

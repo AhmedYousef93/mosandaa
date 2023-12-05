@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
     Route::resource('users', \App\Http\Controllers\Admin\UsersController::class);
     Route::resource('admins', \App\Http\Controllers\Admin\AdminsController::class)->except(['show']);
     Route::resource('cities', \App\Http\Controllers\Admin\CityController::class)->except(['show']);
+    Route::resource('days', \App\Http\Controllers\Admin\DayController::class)->except(['show']);
     Route::resource('areas', \App\Http\Controllers\Admin\AreaController::class)->except(['show']);
     Route::get('/areas/get-by-city', [\App\Http\Controllers\Admin\AreaController::class, 'getAreasByCity'])->name('areas.get.by.city');
     

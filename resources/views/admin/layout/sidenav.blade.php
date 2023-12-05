@@ -159,6 +159,15 @@
             </li>
             @endif
 
+            @if(Auth::guard('admin')->user()->hasPermission('days-read'))
+            <li class="nav-item {{ URL::route('days.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('days.index')}}"><i data-feather='days'></i><span
+                        style="font-family: cairo;" class="menu-title text-truncate"
+                        data-i18n="Day">@lang('admin.days')</span>
+                </a>
+            </li>
+            @endif
+
             
         </ul>
     </div>
