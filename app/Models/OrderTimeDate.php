@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class OrderTimeDate extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function orderTimeDates()
+    public function time()
     {
-        return $this->hasMany(OrderTimeDate::class, 'time_id');
+        return $this->belongsTo(Time::class, 'time_id');
     }
-
 }
