@@ -6,10 +6,12 @@ use App\Http\Requests\Api\UpdateAddressRequest;
 use App\Http\Resources\AddressResource;
 use App\Models\Address;
 use App\Services\AddressService;
+use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+    use ResponseTrait;
     private $addressService;
 
     public function __construct(AddressService $addressService)

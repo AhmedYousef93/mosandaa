@@ -21,7 +21,13 @@ Route::middleware(['bindings'])->group(function () {
     Route::get('all-services-with-subservices', [\App\Http\Controllers\API\ServiceController::class, 'allServiceWithSubServices']); //all-services-with-subservices
     Route::get('subservices/{service}', [\App\Http\Controllers\API\ServiceController::class, 'getSubService']); //subservices
 
-
+    // uploads
+    Route::post('upload-image-resize', [\App\Http\Controllers\Api\AttachmentController::class, 'uploadImage']); //image
+    Route::post(
+        'upload-image-without-resize',
+        [\App\Http\Controllers\Api\AttachmentController::class, 'uploadImageNoResize']
+    ); //image
+    Route::post('upload-file', [\App\Http\Controllers\Api\AttachmentController::class, 'uploadAttachment']); //file
     Route::middleware(['auth:sanctum'])->group(function () {
 
         // user setting
@@ -37,6 +43,7 @@ Route::middleware(['bindings'])->group(function () {
         Route::get('/update-addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
         Route::get('/user-addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
         Route::get('addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
+        Route::get('times/{day}', [\App\Http\Controllers\Api\TimeController::class, 'getTimes']);
 
         Route::get('notifications', [\App\Http\Controllers\API\NotificationController::class, 'userNotifications']);
         Route::post('delete-notification', [\App\Http\Controllers\API\NotificationController::class, 'DeleteNotification']);
