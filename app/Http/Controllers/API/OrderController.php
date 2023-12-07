@@ -27,6 +27,7 @@ class OrderController extends BaseController {
             $orderData = $request->except('researcher_name', 'researcher_title');
             $legalAdviceData = $request->only('researcher_name', 'researcher_title');
 
+            
             $order = Order::create($orderData);
 
             $order->legalAdviceOrderDetail()->create($legalAdviceData);
