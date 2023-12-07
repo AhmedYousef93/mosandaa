@@ -14,44 +14,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class OrderController extends BaseController
-{
+class OrderController extends BaseController {
     use ResponseTrait;
 
-    public function post(Request $request)
-    {
+    public function post(OrderRequestValidator $request) {
+
         DB::beginTransaction();
         try {
 
-            $validator = Validator::make($request->all(), [
-                'products'         => 'required|array',
-                'kid_id'       => 'required|exists:users,id',
-                'total'        => 'required|',
-                'lat'          => 'required|',
-                'lang'          => 'required|',
-            ]);
-            if ($validator->fails()) {
-                return self::faildResponse(422 , $validator->errors()->first());
-            }
+            $validatedData = $request->validated();
 
-            $order = Order::create(['user_id' => auth()->user()->id, 'kid_id' => $request->kid_id, 'total' =>  $request['total'] ,'lat'=>$request->lat , 'lang'=>$request->lang]);
+            $orderData = $request->except('researcher_name', 'researcher_title');
+            $legalAdviceData = $request->only('researcher_name', 'researcher_title');
 
-            $user = User::find(auth()->user()->id);
-            $user->balance = $user->balance + $request['total'];
-            $user->save();
+            $order = Order::create($orderData);
 
-            $user = User::find($request->kid_id);
-            $user->balance = $user->balance - $request['total'];
-            $user->save();
+            $order->legalAdviceOrderDetail()->create($legalAdviceData);
 
-            foreach ($request->products as $product) {
-                $order->products()->create($product);
-            }
-
-            
-            
             DB::commit();
-            return self::successResponse(__('application.added') , OrderResource::make($order));
+            return self::successResponse(__('application.added'), OrderResource::make($order));
         } catch (\Exception $e) {
             return $e;
             DB::rollback();
@@ -59,16 +40,14 @@ class OrderController extends BaseController
         }
     }
 
-    public function order($id)
-    {
+    public function order($id) {
         $data = new OrderResource(Order::find($id));
-        return self::successResponse('' , $data);
+        return self::successResponse('', $data);
     }
 
-    public function order_kid($id)
-    {
+    public function order_kid($id) {
         $order = Order::find($id);
         $data = new OrderResource(Order::find($id));
-        return self::successResponse('' , $data);
+        return self::successResponse('', $data);
     }
 }
