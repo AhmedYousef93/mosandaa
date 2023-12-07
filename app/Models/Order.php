@@ -29,6 +29,11 @@ class Order extends Model
         return $this->hasOne(LitigationOrderDetail::class);
     }
 
+    public function orderTimeDate()
+    {
+        return $this->hasOne(OrderTimeDate::class);
+    }
+
 
    
 }
