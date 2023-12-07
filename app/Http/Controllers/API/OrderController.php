@@ -27,12 +27,13 @@ class OrderController extends BaseController {
 
             $orderData = $request->except('researcher_name', 'researcher_title');
             $legalAdviceData = $request->only('researcher_name', 'researcher_title','time','date');
+            $orderTimeDate = $request->only('time','date')
 
             
             $order = Order::create($orderData);
 
             $order->legalAdviceOrderDetail()->create($legalAdviceData);
-            $order->orderTimeDate()->create($legalAdviceData);
+            $order->orderTimeDate()->create($orderTimeDate);
 
             DB::commit();
             return self::successResponse(__('application.added'), OrderResource::make($order));

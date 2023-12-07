@@ -18,7 +18,7 @@ Route::middleware(['bindings'])->group(function () {
     Route::get('areas/{city}', [\App\Http\Controllers\API\SettingController::class, 'areas']); //states
     Route::get('states/{area}', [\App\Http\Controllers\API\SettingController::class, 'states']); //states
     Route::get('services', [\App\Http\Controllers\API\ServiceController::class, 'index']); //services
-    Route::get('all-services-with-subservices', [\App\Http\Controllers\API\ServiceController::class, 'allServiceWithSubServices']); //all-services-with-subservices
+    Route::get('services/subservices', [\App\Http\Controllers\API\ServiceController::class, 'allServiceWithSubServices']); //all-services-with-subservices
     Route::get('subservices/{service}', [\App\Http\Controllers\API\ServiceController::class, 'getSubService']); //subservices
 
     // uploads
@@ -40,8 +40,8 @@ Route::middleware(['bindings'])->group(function () {
         //addresses
         Route::post('/addresses', [\App\Http\Controllers\API\AddressController::class, 'store']);
         Route::get('/addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'show']);
-        Route::get('/update-addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
-        Route::get('/user-addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
+        Route::get('/addresses/update/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
+        Route::get('/user/addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
         Route::get('addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
         Route::get('times/{day}', [\App\Http\Controllers\Api\TimeController::class, 'getTimes']);
 
