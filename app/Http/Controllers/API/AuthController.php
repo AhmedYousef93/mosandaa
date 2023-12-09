@@ -9,7 +9,7 @@ use App\Http\Requests\Api\UpdateUserRequest;
 use App\Http\Requests\Api\UserLoginRequest;
 use App\Http\Requests\Api\UserRegisterRequest;
 use App\Http\Requests\Api\UserResetPasswordRequest;
-use App\Http\Requests\API\VerifyRequest;
+use App\Http\Requests\Api\VerifyRequest;
 use App\Models\User;
 use App\Traits\ResponseTrait;
 use App\Http\Resources\UserResource;
