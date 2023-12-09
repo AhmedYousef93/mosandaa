@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\OrderRequestValidator;
+use App\Http\Requests\Api\OrderRequestValidator;
 use App\Http\Resources\OrderKidResource;
 use App\Http\Resources\OrderResource;
 use App\Models\Cart;
