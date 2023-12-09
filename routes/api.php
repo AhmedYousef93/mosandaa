@@ -22,12 +22,12 @@ Route::middleware(['bindings'])->group(function () {
     Route::get('subservices/{service}', [\App\Http\Controllers\API\ServiceController::class, 'getSubService']); //subservices
 
     // uploads
-    Route::post('upload-image-resize', [\App\Http\Controllers\Api\AttachmentController::class, 'uploadImage']); //image
+    Route::post('upload-image-resize', [\App\Http\Controllers\API\AttachmentController::class, 'uploadImage']); //image
     Route::post(
         'upload-image-without-resize',
-        [\App\Http\Controllers\Api\AttachmentController::class, 'uploadImageNoResize']
+        [\App\Http\Controllers\API\AttachmentController::class, 'uploadImageNoResize']
     ); //image
-    Route::post('upload-file', [\App\Http\Controllers\Api\AttachmentController::class, 'uploadAttachment']); //file
+    Route::post('upload-file', [\App\Http\Controllers\API\AttachmentController::class, 'uploadAttachment']); //file
     Route::middleware(['auth:sanctum'])->group(function () {
 
         // user setting
@@ -42,9 +42,9 @@ Route::middleware(['bindings'])->group(function () {
         Route::get('/addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'show']);
         Route::get('/addresses/update/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
         Route::get('/user/addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
-        Route::get('/addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
-        Route::get('/times/{day}', [\App\Http\Controllers\Api\TimeController::class, 'getTimes']);
-        Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
+        Route::get('/addresses/delete/{address}', [\App\Http\Controllers\API\AddressController::class, 'destroy']);
+        Route::get('/times/{day}', [\App\Http\Controllers\API\TimeController::class, 'getTimes']);
+        Route::post('/orders', [\App\Http\Controllers\API\OrderController::class, 'store']);
 
         Route::get('notifications', [\App\Http\Controllers\API\NotificationController::class, 'userNotifications']);
         Route::post('delete-notification', [\App\Http\Controllers\API\NotificationController::class, 'DeleteNotification']);
