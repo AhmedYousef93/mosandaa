@@ -17,8 +17,9 @@ class ServiceSeeder extends Seeder
     {
         $services = [
             [
-                'title_ar' => 'قسم التقاضي',
-                'title_en' => 'Litigation Section',
+               
+                'title_ar' => 'قسم الاستشارات',
+                'title_en' => 'Consulting Department',
                 'description_ar' => 'description_ar',
                 'description_en' => 'description_en',
                 'subservices' => [
@@ -43,8 +44,8 @@ class ServiceSeeder extends Seeder
                 ],
             ],
             [
-                'title_ar' => 'قسم الاستشارات',
-                'title_en' => 'Consulting Department',
+                'title_ar' => 'قسم التقاضي',
+                'title_en' => 'Litigation Section',
                 'description_ar' => 'description_ar',
                 'description_en' => 'description_en',
                 'subservices' => [
