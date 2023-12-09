@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\DeleteNotificationRequest;
+use App\Http\Requests\Api\DeleteNotificationRequest;
 use App\Http\Resources\NotificationResource;
 use App\Models\Notification;
 use App\Traits\ResponseTrait;

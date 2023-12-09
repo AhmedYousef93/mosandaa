@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\RegisterRequest;
-use App\Http\Requests\API\UpdateKidRequest;
+use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Requests\Api\UpdateKidRequest;
 use App\Http\Requests\Api\UpdateUserRequest;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\RechargeResource;

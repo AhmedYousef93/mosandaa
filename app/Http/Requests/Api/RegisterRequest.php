@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\API;
 
-use App\Http\Requests\API\ApiFormRequest;
+use App\Http\Requests\Api\ApiFormRequest;
 
 class RegisterRequest extends ApiFormRequest
 {

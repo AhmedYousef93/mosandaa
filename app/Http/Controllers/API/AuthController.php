@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\ResetCodeResquest;
+use App\Http\Requests\Api\ResetCodeResquest;
 use App\Http\Requests\Api\UpdateUserProofileRequest;
 use App\Http\Requests\Api\UpdateUserRequest;
 use App\Http\Requests\Api\UserLoginRequest;
