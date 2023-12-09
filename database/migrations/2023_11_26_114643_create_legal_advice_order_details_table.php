@@ -19,9 +19,9 @@ return new class extends Migration {
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->unsignedBigInteger('time_id');
             $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
-            $table->string('meet_link');
+            $table->string('meet_link')->nullable();
             $table->integer('type');
-            $table->integer('case_language');
+            $table->string('case_language');
             $table->timestamps();
         });
     }

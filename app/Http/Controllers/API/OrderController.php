@@ -26,7 +26,7 @@ class OrderController extends BaseController {
 
             $validatedData = $request->validated();
 
-            $orderData = $request->except('researcher_name', 'researcher_title');
+            $orderData = $request->except('researcher_name', 'researcher_title','type','case_language');
             $orderData['user_id'] = Auth::user()->id;
             $orderData['status'] = 1;
             $legalAdviceData = $request->only('researcher_name', 'researcher_title', 'time_id', 'date', 'case_language', 'type');
@@ -43,7 +43,7 @@ class OrderController extends BaseController {
                 auth()->user()->assignAttachment($request->file);
 
             DB::commit();
-            return self::successResponse(__('application.added'), OrderResource::make($order));
+            return self::successResponse(__('application.added'));
         } catch (\Exception $e) {
             return $e;
             DB::rollback();

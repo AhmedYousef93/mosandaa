@@ -31,7 +31,7 @@ class OrderRequestValidator extends FormRequest
             'researcher_name' => 'required|string',
             'researcher_title' => 'required|string',
             'type' => 'required|integer',
-            'case_language' => 'required|integer',
+            'case_language' => 'required|string',
         ];
     }
 }

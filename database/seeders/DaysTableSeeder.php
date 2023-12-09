@@ -23,5 +23,16 @@ class DaysTableSeeder extends Seeder
             ['name' => 'Thursday', 'status' => 1],
             ['name' => 'Friday', 'status' => 1],
         ]);
+
+
+        DB::table('times')->insert([
+            ['day_id' => '1', 'time' => 12.20],
+            ['day_id' => '2', 'time' => 11.20],
+            ['day_id' => '3', 'time' => 10.20],
+            ['day_id' => '4', 'time' => 10.20],
+            ['day_id' => '5', 'time' => 10.20],
+            ['day_id' => '6', 'time' => 10.20],
+            ['day_id' => '7', 'time' => 10.20],
+        ]);
     }
 }
