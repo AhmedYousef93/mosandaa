@@ -12,13 +12,14 @@ use App\Models\Product;
 use App\Models\User;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends BaseController {
     use ResponseTrait;
 
-    public function post(OrderRequestValidator $request) {
+    public function store(OrderRequestValidator $request) {
 
         DB::beginTransaction();
         try {
@@ -26,14 +27,20 @@ class OrderController extends BaseController {
             $validatedData = $request->validated();
 
             $orderData = $request->except('researcher_name', 'researcher_title');
-            $legalAdviceData = $request->only('researcher_name', 'researcher_title','time','date');
-            $orderTimeDate = $request->only('time','date')
+            $orderData['user_id'] = Auth::user()->id;
+            $orderData['status'] = 1;
+            $legalAdviceData = $request->only('researcher_name', 'researcher_title', 'time_id', 'date', 'case_language', 'type');
+            $orderTimeDate = $request->only('time_id', 'date');
 
-            
+
             $order = Order::create($orderData);
 
             $order->legalAdviceOrderDetail()->create($legalAdviceData);
             $order->orderTimeDate()->create($orderTimeDate);
+            if($request->file)
+                auth()->user()->assignAttachment($request->file);
+            if($request->recordes)
+                auth()->user()->assignAttachment($request->file);
 
             DB::commit();
             return self::successResponse(__('application.added'), OrderResource::make($order));

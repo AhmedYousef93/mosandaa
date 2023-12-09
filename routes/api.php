@@ -42,8 +42,9 @@ Route::middleware(['bindings'])->group(function () {
         Route::get('/addresses/{address}', [\App\Http\Controllers\API\AddressController::class, 'show']);
         Route::get('/addresses/update/{address}', [\App\Http\Controllers\API\AddressController::class, 'update']);
         Route::get('/user/addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
-        Route::get('addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
-        Route::get('times/{day}', [\App\Http\Controllers\Api\TimeController::class, 'getTimes']);
+        Route::get('/addresses/delete/{address}', [\App\Http\Controllers\Api\AddressController::class, 'destroy']);
+        Route::get('/times/{day}', [\App\Http\Controllers\Api\TimeController::class, 'getTimes']);
+        Route::post('/orders', [\App\Http\Controllers\Api\OrderController::class, 'store']);
 
         Route::get('notifications', [\App\Http\Controllers\API\NotificationController::class, 'userNotifications']);
         Route::post('delete-notification', [\App\Http\Controllers\API\NotificationController::class, 'DeleteNotification']);

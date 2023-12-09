@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('subservice_id')->references('id')->on('subservices')->onDelete('cascade');
             $table->date('date');
             $table->json('status');
-            $table->time('time');
+            $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('tax', 10, 2);
             $table->decimal('total_before_tax', 10, 2);
             $table->decimal('total', 10, 2);

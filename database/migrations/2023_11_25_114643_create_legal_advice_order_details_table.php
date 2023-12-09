@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('legal_advice_order_details', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->time('time');
             $table->string('researcher_name');
             $table->string('researcher_title');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
             $table->string('meet_link');
             $table->integer('type');
             $table->integer('case_language');
