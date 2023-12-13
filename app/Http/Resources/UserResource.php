@@ -32,6 +32,11 @@ class UserResource extends JsonResource
             'id_number' => (string) $this->userDetails->id_number,
             'date_of_birth' => (string) $this->userDetails->date_of_birth,
             'access_token' => (string) $this->token,
+            'id_number_id' => (int) $this->attachments()->where('title', 'id_number')->first()?->id,
+            'id_number_file' => get_file($this->attachments()->where('title', 'id_number')->first()?->file),
+            'contract_id' => (int) $this->attachments()->where('title', 'contract')->first()?->id,
+            'contract_file' => get_file($this->attachments()->where('title', 'contract')->first()?->file),
+
         ];
     }
 }

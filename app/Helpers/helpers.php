@@ -34,7 +34,8 @@ function format_field_names($name, $details): array
 
 function generate_verification_code(): int
 {
-    return rand(1000, 9999);
+    return 1111;
+    // return rand(1000, 9999);
 }
 
 function get_nearest($query, $lat, $lng)

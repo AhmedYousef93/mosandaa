@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('national_address')->nullable();
             $table->date('date_of_entering')->nullable();
             $table->string('passport_number')->nullable();
-            $table->decimal('salary', 10, 2)->nullable();
+            $table->double('salary', 10, 2)->nullable();
             $table->string('sponsor_residence')->nullable();
             $table->string('labor_city')->nullable();
             $table->string('id_number')->nullable();

@@ -26,14 +26,14 @@ trait HasAttachment
 
             $attach = Attachment::find($id);
             $attach->update([
-                'file'  => (new \App\Services\AttachmentService)->image_uploader_with_resize($file, $folder, $attach->file)
+                'file' => (new \App\Services\AttachmentService)->image_uploader_with_resize($file, $folder, $attach->file)
             ]);
 
             return $attach;
         } else
 
             return Attachment::create([
-                'type' => true,
+                'type' => 1,
                 'title' => $title,
                 'file' => (new \App\Services\AttachmentService)->image_uploader_with_resize($file, $folder),
             ]);
@@ -48,12 +48,12 @@ trait HasAttachment
         if ($id != null) {
             $attach = Attachment::find($id);
             $attach->update([
-                'file'  => (new \App\Services\AttachmentService)->image_uploader_without_resize($file, $folder, $attach->file)
+                'file' => (new \App\Services\AttachmentService)->image_uploader_without_resize($file, $folder, $attach->file)
             ]);
             return $attach;
         } else
             return Attachment::create([
-                'type' => true,
+                'type' => 1,
                 'title' => $title,
                 'file' => (new \App\Services\AttachmentService)->image_uploader_without_resize($file, $folder),
             ]);
@@ -69,17 +69,18 @@ trait HasAttachment
         if ($id != null) {
             $attach = Attachment::find($id);
             $attach->update([
-                'file'  => (new \App\Services\AttachmentService)->file_uploader($file, $folder, $attach->file)
+                'file' => (new \App\Services\AttachmentService)->file_uploader($file, $folder, $attach->file)
             ]);
             return $attach;
         } else
             return Attachment::create([
-                'type' => false,
+                'type' => $title == "video" || "audio" ? 3 : 2,
                 'title' => $title,
                 'size' => $size ?? 0,
                 'file' => (new \App\Services\AttachmentService)->file_uploader($file, $folder),
             ]);
     }
+
 
     public function assignAttachment(array $files): void
     {
@@ -119,7 +120,7 @@ trait HasAttachment
         $attachment = $this->saveImageResize($file, $folder, $title, $id);
         $attachment->update([
             'attachmentable_type' => get_class($this),
-            'attachmentable_id'   => $this->id,
+            'attachmentable_id' => $this->id,
         ]);
     }
 
@@ -136,7 +137,7 @@ trait HasAttachment
         $attachment = $this->saveFile($file, $folder, $title, $id);
         $attachment->update([
             'attachmentable_type' => get_class($this),
-            'attachmentable_id'   => $this->id,
+            'attachmentable_id' => $this->id,
         ]);
     }
 }

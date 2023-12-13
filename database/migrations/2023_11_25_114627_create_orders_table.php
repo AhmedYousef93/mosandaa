@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->unsignedBigInteger('time_id');
+            $table->unsignedBigInteger('time_id')->nullable();
             $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('subservice_id');
             $table->foreign('subservice_id')->references('id')->on('subservices')->onDelete('cascade');
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->json('status');
             $table->decimal('tax', 10, 2)->nullable();
             $table->decimal('total_before_tax', 10, 2)->nullable();

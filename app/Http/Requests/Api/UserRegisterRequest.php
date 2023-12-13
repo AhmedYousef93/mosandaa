@@ -15,6 +15,7 @@ class UserRegisterRequest extends ApiFormRequest
             'id_number' => ['required','digits:10','unique:user_details'],
             'password'  => ['required','min:8','confirmed'],
             'fcm_token' => ['required', 'string'],
+            'date_of_birth' => ['required', 'date_format:Y-m-d'],
         ];
     }
 

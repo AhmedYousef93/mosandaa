@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\OrderRequestValidator;
+use App\Http\Requests\Api\litigationOrderRequest;
 use App\Http\Resources\OrderKidResource;
 use App\Http\Resources\OrderMinimumResource;
 use App\Http\Resources\OrderResource;
@@ -17,41 +17,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class OrderController extends BaseController
+class litigationOrderController extends BaseController
 {
     use ResponseTrait;
 
-
-    public function index(Request $request)
+    public function store(litigationOrderRequest $request)
     {
-        $newOrders = Order::newOrdersByUser(Auth::user()->id)->latest()->paginate(10);
-        $doneOrders = Order::doneOrdersByUser(Auth::user()->id)->latest()->paginate(10);
-
-        $data['current'] = OrderMinimumResource::collection($newOrders)->response()->getData(true);
-        $data['previous'] = OrderMinimumResource::collection($doneOrders)->response()->getData(true);
-
-        return self::successResponse(__('application.added'), $data);
-    }
-    public function store(OrderRequestValidator $request)
-    {
-
         DB::transaction(function () use ($request) {
             $validatedData = $request->validated();
-            $orderData = $request->except('researcher_name', 'researcher_title', 'type', 'case_language');
+            $orderData = $request->only('service_id', 'subservice_id');
             $orderData['user_id'] = Auth::user()->id;
             $orderData['status'] = 1;
-            $legalAdviceData = $request->only('researcher_name', 'researcher_title', 'time_id', 'date', 'case_language', 'type');
-            $orderTimeDate = $request->only('time_id', 'date');
+            $litigationData = $request->only('title', 'description', 'owner_case', 'defendants_name', 'id_number_accused');
             $order = Order::create($orderData);
-            $order->legalAdviceOrderDetail()->create($legalAdviceData);
-            $order->orderTimeDate()->create($orderTimeDate);
+            $order->litigationOrderDetail()->create($litigationData);
             if ($request->attachments)
-               $order->assignAttachment($request->attachments);
-           
+                $order->assignAttachment($request->attachments);
+
             return self::successResponse(__('application.added'));
         });
-
-
     }
 
     public function order($id)

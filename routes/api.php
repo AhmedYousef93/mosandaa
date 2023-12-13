@@ -33,7 +33,7 @@ Route::middleware(['bindings'])->group(function () {
         // user setting
 
         Route::get('logout', [\App\Http\Controllers\API\AuthController::class, 'logout']); // logout
-        Route::post('update-profile', [\App\Http\Controllers\API\AuthController::class, 'updateProfile']); //update user
+        Route::post('update/profile', [\App\Http\Controllers\API\AuthController::class, 'updateProfile']); //update user
         Route::post('update', [\App\Http\Controllers\API\AuthController::class, 'update']); //update user
         Route::get('user-profile', [\App\Http\Controllers\API\AuthController::class, 'show']); // user
         Route::get('user-delete', [\App\Http\Controllers\API\AuthController::class, 'delete']); //delete user
@@ -44,7 +44,9 @@ Route::middleware(['bindings'])->group(function () {
         Route::get('/user/addresses', [\App\Http\Controllers\API\AddressController::class, 'addresses']);
         Route::get('/addresses/delete/{address}', [\App\Http\Controllers\API\AddressController::class, 'destroy']);
         Route::get('/times/{day}', [\App\Http\Controllers\API\TimeController::class, 'getTimes']);
-        Route::post('/orders', [\App\Http\Controllers\API\OrderController::class, 'store']);
+        Route::post('/legal/advice/order/store', [\App\Http\Controllers\API\OrderController::class, 'store']);
+        Route::post('/litigation/order/store', [\App\Http\Controllers\API\litigationOrderController::class, 'store']);
+        Route::get('/users/orders', [\App\Http\Controllers\API\OrderController::class, 'index']);
 
         Route::get('notifications', [\App\Http\Controllers\API\NotificationController::class, 'userNotifications']);
         Route::post('delete-notification', [\App\Http\Controllers\API\NotificationController::class, 'DeleteNotification']);
