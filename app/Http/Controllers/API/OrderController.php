@@ -40,11 +40,11 @@ class OrderController extends BaseController
             $orderData = $request->except('researcher_name', 'researcher_title', 'type', 'case_language');
             $orderData['user_id'] = Auth::user()->id;
             $orderData['status'] = 1;
-            $legalAdviceData = $request->only('researcher_name', 'researcher_title', 'time_id', 'date', 'case_language', 'type');
-            $orderTimeDate = $request->only('time_id', 'date');
+            $legalAdviceData = $request->only('researcher_name', 'researcher_title','case_language', 'type');
+            // $orderTimeDate = $request->only('time', 'date');
+            // $order->orderTimeDate()->create($orderTimeDate);
             $order = Order::create($orderData);
             $order->legalAdviceOrderDetail()->create($legalAdviceData);
-            $order->orderTimeDate()->create($orderTimeDate);
             if ($request->attachments)
                $order->assignAttachment($request->attachments);
            

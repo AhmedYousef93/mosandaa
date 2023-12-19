@@ -57,8 +57,8 @@
             </li>
             @endif
             @if(Auth::guard('admin')->user()->hasPermission('orders-read'))
-            <li class="nav-item {{ URL::route('admins.index') === URL::current() ? 'active' : '' }}">
-                <a class="d-flex align-items-center" href="{{route('admins.index')}}"><i data-feather="user"></i><span
+            <li class="nav-item {{ URL::route('ordersAdvice.index') === URL::current() ? 'active' : '' }}">
+                <a class="d-flex align-items-center" href="{{route('ordersAdvice.index')}}"><i data-feather="user"></i><span
                         style="font-family: cairo;" class="menu-title text-truncate"
                         data-i18n="Admin">@lang('admin.orders')</span>
                 </a>

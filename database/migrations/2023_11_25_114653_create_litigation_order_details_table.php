@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -20,15 +19,15 @@ return new class extends Migration
             $table->longText('legal_recommendation')->nullable();
             $table->json('strong_points')->nullable();
             $table->json('weakness_points')->nullable();
-            $table->string('defendants_name');
+            $table->string('defendants_name')->nullable();
             $table->text('Jurisdiction')->nullable();
-            $table->string('owner_case');
-            $table->string('prosecutor');
-            $table->string('id_number_accused');
-            $table->string('nationality_accused');
+            $table->string('owner_case')->nullable();
+            $table->string('prosecutor')->nullable();
+            $table->string('id_number_accused')->nullable();
+            $table->string('nationality_accused')->nullable();
             $table->integer('type');
             $table->boolean('admin_review')->default(false);
-            $table->integer('case_language');
+            $table->integer('case_language')->nullable();
             $table->boolean('need_to_arbitration')->default(false);
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

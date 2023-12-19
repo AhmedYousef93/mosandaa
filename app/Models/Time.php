@@ -14,5 +14,10 @@ class Time extends Model
     {
         return $this->hasMany(OrderTimeDate::class, 'time_id');
     }
+    public function day()
+    {
+        return $this->belongsTo(Day::class, 'day_id');
+    }
+
 
 }

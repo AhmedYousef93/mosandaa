@@ -26,8 +26,9 @@ class OrderRequestValidator extends FormRequest
         return [
             'service_id' => 'required|exists:services,id',
             'subservice_id' => 'required|exists:subservices,id',
-            'date' => 'required|date',
-            'time_id' => 'required|exists:times,id',
+            // 'date' => 'required|date',
+            // 'time_id' => 'required|exists:times,id',
+            // 'time' => 'required',
             'researcher_name' => 'required|string',
             'researcher_title' => 'required|string',
             'type' => 'required|integer',

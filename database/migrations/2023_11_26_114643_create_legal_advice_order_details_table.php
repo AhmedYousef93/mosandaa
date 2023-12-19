@@ -12,13 +12,14 @@ return new class extends Migration {
     {
         Schema::create('legal_advice_order_details', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->date('date')->nullable();
+            $table->string('time')->nullable();
             $table->string('researcher_name');
             $table->string('researcher_title');
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->unsignedBigInteger('time_id');
-            $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
+            // $table->unsignedBigInteger('time_id');
+            // $table->foreign('time_id')->references('id')->on('times')->onDelete('cascade');
             $table->string('meet_link')->nullable();
             $table->integer('type');
             $table->string('case_language');

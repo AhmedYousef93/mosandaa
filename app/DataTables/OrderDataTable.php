@@ -3,15 +3,13 @@
 namespace App\DataTables;
 
 use App\Models\Order;
-use Carbon\Carbon;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
 
 class OrderDataTable extends DataTable
 {
+
     /**
      * Build DataTable class.
      *
@@ -21,11 +19,37 @@ class OrderDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query)
-            ->editColumn('created_at', function ($query) {
-                $date = Carbon::parse($query->created_at)->format('Y-m-d');
-                return $date;
-            });
+            ->eloquent($query)  
+            ->addColumn('service', function ($query) {
+                return $query->service->title;
+            })
+            ->addColumn('subservice', function ($query) {
+                return $query->subservice->title;
+            })   
+            ->addColumn('time', function ($query) {
+                return $query->time->time;
+            })
+             ->addColumn('user', function ($query) {
+                return $query->user->name;
+            }) 
+            ->addColumn('status', function ($query) {
+                return match ($query->status?->value) {
+                    1 => '<p>' . $query->status?->label() . '</p>',
+                    2 => '<p>' . $query->status?->label() . '</p>',
+                    3 => '<p>' . $query->status?->label() . '</p>',
+                    4 => '<p>' . $query->status?->label() . '</p>',
+                    5 => '<p>' . $query->status?->label() . '</p>',
+                    default => '<p>' . $query->status?->label() . '</p>'
+                };
+
+            })
+             ->addColumn('action', function ($query) {
+                $btn = '<a href="' . route('ordersAdvice.show', $query->id) . '" class="btn btn-icon btn-icon rounded-circle btn-info show">
+                <i data-feather="eye"></i>
+                        </a>';
+                return $btn;
+            })
+            ->rawColumns(['action','status']);
     }
 
     /**
@@ -36,7 +60,7 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $model)
     {
-        return $model->query()->where('user_id', $this->id);
+        return $model->query()->orderByDesc('id');
     }
 
     /**
@@ -44,23 +68,15 @@ class OrderDataTable extends DataTable
      *
      * @return \Yajra\DataTables\Html\Builder
      */
-    public function html()
+    public function html(): HtmlBuilder
     {
         return $this->builder()
-        ->setTableId('order-table')
-        ->columns($this->getColumns())
-        ->minifiedAjax()
-        //->dom('Bfrtip')
-        ->parameters([
-            "processing" => true,
-            "serverSide" => true,
-            "responsive" => true,
-            "searching"=> true,
-            "drawCallback" => "function( settings ) {
-                feather.replace();
-            }",
-        ])
-        ->orderBy(0);
+            ->setTableId('order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle();
     }
 
     /**
@@ -71,20 +87,16 @@ class OrderDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => ['title' => 'ID', 'data' => 'id'],
-            'kid_id' => ['title' => __('admin.kid_name'), 'data' => 'kid_id'],
-            'total' => ['title' => __('admin.total'), 'data' => 'total'],
-            'created_at' =>['title' => __('admin.date'), 'data' => 'created_at'],
+            Column::make('id')->title("#")->addClass('text-center')->orderable(false)->searchable(false),
+            Column::computed('service')->title(__('admin.service'))->searchable(true)->addClass('text-center'),
+            Column::computed('subservice')->title(__('admin.subservice'))->searchable(true)->addClass('text-center'),
+            Column::computed('user')->title(__('admin.user'))->searchable(true)->addClass('text-center'),
+            Column::computed('date')->title(__('admin.date'))->searchable(true)->addClass('text-center'),
+            Column::computed('time')->title(__('admin.time'))->searchable(true)->addClass('text-center'),
+            Column::computed('status')->title(__('admin.status'))->searchable(true)->addClass('text-center'),
+            Column::computed('action')->title(__('admin.action'))->exportable(false)->printable(false)->addClass('text-center'),
         ];
     }
 
-    /**
-     * Get filename for export.
-     *
-     * @return string
-     */
-    protected function filename()
-    {
-        return 'Order_' . date('YmdHis');
-    }
+
 }

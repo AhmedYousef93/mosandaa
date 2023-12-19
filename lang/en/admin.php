@@ -508,7 +508,8 @@ return [
     'building_number'=> 'Building Number',
     'street'=> 'Street',
     'Employment_contract_offer'=> 'Employment contract offer',
-    'Identity_Show'=> 'Identity Show'
+    'Identity_Show'=> 'Identity Show',
+    'specified_time'=> 'specified_time',
 
 
 

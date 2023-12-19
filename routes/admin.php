@@ -25,7 +25,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function () 
     Route::get('/get-time/{dayId}', [\App\Http\Controllers\Admin\DayController::class, 'getTime'])->name('days.time');
     Route::resource('areas', \App\Http\Controllers\Admin\AreaController::class)->except(['show']);
     Route::get('/areas/get-by-city', [\App\Http\Controllers\Admin\AreaController::class, 'getAreasByCity'])->name('areas.get.by.city');
-    
+    Route::resource('ordersAdvice', \App\Http\Controllers\Admin\LegalOrderController::class);
+
 
     Route::resource('states', \App\Http\Controllers\Admin\StateController::class)->except(['show']);
     Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class)->except(['show']);

@@ -504,7 +504,7 @@ return [
     'building_number'=> 'رقم المبني ',
     'street'=> 'الشارع',
     'Employment_contract_offer'=> 'عرض عقد العمل',
-    'Identity_Show'=> ' عرض الهوية'
-
+    'Identity_Show'=> ' عرض الهوية',
+    'specified_time'=> 'الوقت المحدد',
 
 ];

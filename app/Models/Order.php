@@ -39,6 +39,15 @@ class Order extends Model
     {
         return $this->belongsTo(Subservice::class);
     }
+    public function time()
+    {
+        return $this->belongsTo(Time::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function legalAdviceOrderDetail()
     {
